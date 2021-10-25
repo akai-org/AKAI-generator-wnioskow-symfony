@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
 
-    <title>AKAI Generator zaświadczeń</title>
-
+    <title>{% block title %}AKAI Generator zaświadczeń{% endblock %}</title>
     <!-- Fonts -->
+    {% block stylesheets %}
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {% endblock %}
 </head>
 
 <body>
@@ -88,17 +89,17 @@
     <div class="logos" style="margin-left: auto">
 
         <div class="logo" style="padding-right: 45px;">
-            <a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;" src="img/ppLogo.png"></a>
+            <a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;" src="{{ asset('img/ppLogo.png') }}"></a>
 
         </div>
 
         <div class="logo" >
-            <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="img/githubLogo.png"></a>
+            <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="{{ asset('img/githubLogo.png') }}"></a>
 
         </div>
 
         <div class="logo" >
-            <a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="img/akaiLogo.png"></a>
+            <a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"></a>
 
         </div>
 
@@ -106,8 +107,9 @@
     </div>
 
 </footer>
-
-<script src="js/index.js" type="module"></script>
+{% block javascripts %}
+<script src="{{ asset('js/index.js') }}" type="module"></script>
+{% endblock %}
 </body>
 
 
