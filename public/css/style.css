@@ -1,0 +1,285 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: url('./../assets/polibuda.jpg');
+    background-color: rgba(255, 255, 255, 0.7);
+    background-blend-mode: lighten;
+    background-position: -10% 130%;
+    background-repeat: no-repeat;
+    background-size: 900px 900px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    font-family: Nunito;
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: #3d3d3d;
+    padding: 20px 0;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    color: #d3d3d3;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    font-size: 1.4rem;
+    align-items: center;
+}
+
+form > label,
+div {
+    width: 450px;
+}
+
+.form-container {
+    width: 100vw;
+    padding: 30px 0;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px 5px;
+    border: solid 1px #3d3d3d;
+}
+
+.form label {
+    margin: 10px 0;
+}
+
+.form textarea {
+    width: 100%;
+    padding: 10px 5px;
+    border: solid 1px black;
+}
+
+.achievement-field {
+    display: flex;
+    flex-direction: column;
+    animation: appear 300ms ease-in-out;
+    margin-top: 10px;
+    position: relative;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.achievement-container {
+    width: 450px;
+}
+
+.achievement-field > .achievement-field-dates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.achievement-field > .achievement-field-dates > input[type='date'] {
+    width: 200px;
+    margin: 10px 0;
+}
+
+.achievement-field > .achievement-field-dates > span {
+    text-align: center;
+}
+
+p {
+    margin: 30px 0 0 0;
+    width: 450px;
+}
+
+.semesters {
+    position: relative;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    padding: 40px 0px;
+    margin: 30px 0;
+}
+
+.add-achievement-button {
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: right;
+    width: 450px;
+}
+
+.add-achievement-button:hover {
+    text-decoration: underline;
+}
+
+input[type='submit'] {
+    margin-top: 50px;
+    width: 450px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.loading-info {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+    display: none;
+}
+
+.loading-info > svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    /* animation: rotate 3s infinite linear; */
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+.share_link {
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        background: none;
+    }
+
+    .navbar > header {
+        font-size: 3rem;
+    }
+
+    .form-container {
+        width: 100vw;
+        padding: 80px 0;
+    }
+
+    .form > *,
+    input[type='submit'] {
+        width: 80%;
+    }
+
+    .add-achievement-button {
+        width: 80%;
+        font-size: 2rem;
+    }
+
+    .form {
+        font-size: 2.5rem;
+    }
+
+    .form input,
+    textarea {
+        /* padding: 20px 10px; */
+        font-size: 2rem;
+    }
+
+    .achievement-field {
+        width: 100%;
+        /* margin: 0 auto; */
+    }
+
+    .achievement-field-dates {
+        width: 100%;
+    }
+
+    .achievement-field-dates > input[type='date'] {
+        width: 300px !important;
+    }
+
+    .loading-info {
+        width: fit-content;
+        margin: 30px auto;
+        font-size: 2rem;
+    }
+
+    .loading-info > svg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.footer > label,
+div {
+    width: auto;
+}
+
+footer {
+    margin: 0;
+    background-color: #343a40;
+    display: flex;
+    padding: 15px 0;
+}
+
+.footerNapis {
+    color: #d3d3d3;
+    padding-left: 50px;
+    padding-bottom: 15px;
+    vertical-align: bottom;
+    display: flex;
+    align-items: flex-end;
+}
+
+.logo {
+    padding: 15px 21px 15px 10px;
+}
+
+.removable {
+    position: absolute;
+    right: -20px;
+    top: -12px;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 100ms ease-in;
+}
+
+.removable:hover {
+    transform: translateY(-5px);
+}
+
+footer > .logos {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.achievement-remove-button {
+    position: absolute;
+    top: 0;
+    left: calc(100%);
+    background: transparent;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: 2rem;
+    transform: translateY(-1rem);
+    cursor: pointer;
+}
