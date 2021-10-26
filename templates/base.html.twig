@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+{% block body %}
 <nav class="navbar">
     <header class="navbar-brand">Generator zaświadczeń o członkostwie </header>
 </nav>
@@ -107,10 +107,13 @@
     </div>
 
 </footer>
-{% block javascripts %}
-<script src="{{ asset('js/index.js') }}" type="module"></script>
+
+
 {% endblock %}
 </body>
 
+{% block javascripts %}
+    <script src="{{ asset('js/index.js') }}" type="module"></script>
+{% endblock %}
 
 </html>
