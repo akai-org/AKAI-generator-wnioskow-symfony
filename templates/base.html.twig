@@ -18,6 +18,8 @@
     <header class="navbar-brand">Generator zaświadczeń o członkostwie </header>
 </nav>
 
+    {{ form(form) }}
+
 <div class="form-container">
 
     <form class="form" action="index.php" method="post" target="_blank">
@@ -56,7 +58,9 @@
         <input type="submit" value="Wygeneruj" />
 
         <span class="loading-info">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="189.211px" height="211.778px" viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778" xml:space="preserve">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="189.211px"
+                     height="211.778px" viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778"
+                     xml:space="preserve">
                     <g>
                         <path fill-rule="evenodd" clip-rule="evenodd" fill="#FAA21B" d="M45.2,21.895c24.751,0,44.853,19.896,45.192,44.566H90.4v0.634
 		v45.2H45.2h-0.517v-0.006C19.958,112.011,0,91.886,0,67.095C0,42.131,20.237,21.895,45.2,21.895L45.2,21.895z M45.102,40.259
