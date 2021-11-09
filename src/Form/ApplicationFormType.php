@@ -14,15 +14,15 @@ class ApplicationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('leader', TextType::class)
-            ->add('clubname', TextType::class)
-            ->add('department', TextType::class)
-            ->add('patron', TextType::class)
-            ->add('name_surname', TextType::class)
-            ->add('album_number', TextType::class)
-            ->add('function', TextType::class)
-            ->add('start_date', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Submit']);
+            ->add('leader', TextType::class, ['label' => 'Przewodniczący:'])
+            ->add('clubname', TextType::class, ['label' => 'Nazwa Koła (w dopełniaczu):'])
+            ->add('department', TextType::class, ['label' => 'Nazwa Wydziału:'])
+            ->add('patron', TextType::class, ['label' => 'Opiekun Koła:'])
+            ->add('name_surname', TextType::class, ['label' => 'Imię i Nazwisko:'])
+            ->add('album_number', TextType::class, ['label' => 'Indeks:'])
+            ->add('function', TextType::class, ['label' => 'Funkcja:'])
+            ->add('start_date', TextType::class, ['label' => 'Semestr członkostwa:'])
+            ->add('save', SubmitType::class, ['label' => 'Wygeneruj']);
     }
 
     public function configureOption(OptionsResolver $resolver): void
