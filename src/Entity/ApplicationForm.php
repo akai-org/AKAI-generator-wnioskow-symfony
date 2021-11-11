@@ -14,7 +14,7 @@ class ApplicationForm
     protected $name_surname;
     protected $album_number;
     protected $function;
-    protected $start_date;
+    protected $semester;
 
     public function getLeader()
     {
@@ -86,13 +86,13 @@ class ApplicationForm
         $this->function = $function;
     }
 
-    public function getStartDate()
+    public function getSemester()
     {
-        return $this->start_date;
+        return $this->semester;
     }
 
-    public function setStartDate($start_date): void
+    public function setSemester($semester): void
     {
-        $this->start_date = $start_date;
+        $this->semester = $semester;
     }
 }
