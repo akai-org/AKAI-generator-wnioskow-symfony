@@ -15,95 +15,100 @@ class ApplicationForm
     private $album_number;
     private $function;
     private $semester;
-    private $achievements;
+    private $achievements = [];
 
-    public function getLeader()
+    public function getLeader(): string
     {
         return $this->leader;
     }
 
-    public function setLeader($leader): void
+    public function setLeader(string $leader): void
     {
         $this->leader = $leader;
     }
 
-    public function getClubname()
+    public function getClubname(): string
     {
         return $this->clubname;
     }
 
-    public function setClubname($clubname): void
+    public function setClubname(string $clubname): void
     {
         $this->clubname = $clubname;
     }
 
-    public function getDepartment()
+    public function getDepartment(): string
     {
         return $this->department;
     }
 
-    public function setDepartment($department): void
+    public function setDepartment(string $department): void
     {
         $this->department = $department;
     }
 
-    public function getPatron()
+    public function getPatron(): string
     {
         return $this->patron;
     }
 
-    public function setPatron($patron): void
+    public function setPatron(string $patron): void
     {
         $this->patron = $patron;
     }
 
-    public function getNameSurname()
+    public function getNameSurname(): string
     {
         return $this->name_surname;
     }
 
-    public function setNameSurname($name_surname): void
+    public function setNameSurname(string $name_surname): void
     {
         $this->name_surname = $name_surname;
     }
 
-    public function getAlbumNumber()
+    public function getAlbumNumber(): int
     {
         return $this->album_number;
     }
 
-    public function setAlbumNumber($album_number): void
+    public function setAlbumNumber(int $album_number): void
     {
         $this->album_number = $album_number;
     }
 
-    public function getFunction()
+    public function getFunction(): string
     {
         return $this->function;
     }
 
-    public function setFunction($function): void
+    public function setFunction(string $function): void
     {
         $this->function = $function;
     }
 
-    public function getSemester()
+    public function getSemester(): string
     {
         return $this->semester;
     }
 
-    public function setSemester($semester): void
+    public function setSemester(string $semester): void
     {
         $this->semester = $semester;
     }
 
-    public function getAchievements()
+    public function getAchievements(): array
     {
         return $this->achievements;
     }
 
-    public function setAchievements($achievements): void
+    public function setAchievements(array $achievements): void
     {
         $this->achievements = $achievements;
+    }
+
+    public function addAchievement(Achievement $achievement): void
+    {
+        array_push($this->achievements, $achievement);
     }
 }
