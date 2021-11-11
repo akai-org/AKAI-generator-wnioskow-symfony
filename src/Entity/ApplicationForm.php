@@ -6,15 +6,16 @@ namespace App\Entity;
 
 class ApplicationForm
 {
-    protected $leader;
-    protected $clubname;
-    protected $department;
-    protected $patron;
+    private $leader;
+    private $clubname;
+    private $department;
+    private $patron;
 
-    protected $name_surname;
-    protected $album_number;
-    protected $function;
-    protected $semester;
+    private $name_surname;
+    private $album_number;
+    private $function;
+    private $semester;
+    private $achievements;
 
     public function getLeader()
     {
@@ -94,5 +95,15 @@ class ApplicationForm
     public function setSemester($semester): void
     {
         $this->semester = $semester;
+    }
+
+    public function getAchievements()
+    {
+        return $this->achievements;
+    }
+
+    public function setAchievements($achievements): void
+    {
+        $this->achievements = $achievements;
     }
 }
