@@ -40,14 +40,16 @@
 
     <p>Działania w trakcie podanych semestrów: </p>
     <div class="achievement-container">
-        <div class="achievement-field">
-            {{ form_widget(form.achievements.name, {'attr': {'class': 'wideField form-data'}}) }}
-            <div class="achievement-field-dates">
-                {{ form_widget(form.achievements.startDate) }}
-                <span> - </span>
-                {{ form_widget(form.achievements.endDate) }}
+        {% for achievement in form.achievements %}
+            <div class="achievement-field">
+                {{ form_widget(achievement.name, {'attr': {'class': 'wideField form-data'}}) }}
+                <div class="achievement-field-dates">
+                    {{ form_widget(achievement.startDate) }}
+                    <span> - </span>
+                    {{ form_widget(achievement.endDate) }}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
     <span class="add-achievement-button">Dodaj osiągnięcie</span>
 
