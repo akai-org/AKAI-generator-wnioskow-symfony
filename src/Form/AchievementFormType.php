@@ -17,14 +17,16 @@ class AchievementFormType extends AbstractType
         $builder
             ->add('name', TextareaType::class)
             ->add('startDate', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'input' => 'datetime'
             ])
             ->add('endDate', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'input' => 'datetime'
             ]);
     }
 
-    public function configureOption(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Achievement::class

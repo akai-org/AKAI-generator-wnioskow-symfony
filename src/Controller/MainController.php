@@ -3,8 +3,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Achievement;
 use App\Entity\ApplicationForm;
+use App\Entity\Tag;
+use App\Entity\Task;
 use App\Form\ApplicationFormType;
+use App\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +24,9 @@ class MainController extends AbstractController
      */
     public function index(): Response
     {
-        $form = $this->createForm(ApplicationFormType::class, new ApplicationForm());
+        $applicationForm = new ApplicationForm();
+        $applicationForm->addAchievement(new Achievement());
+        $form = $this->createForm(ApplicationFormType::class, $applicationForm);
         return $this->renderForm('base.html.twig', [
             'form' => $form
         ]);
@@ -38,5 +44,4 @@ class MainController extends AbstractController
         }
         return $this->redirect("/");
     }
-
 }
