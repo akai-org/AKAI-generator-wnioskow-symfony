@@ -20,7 +20,8 @@ class ApplicationFormType extends AbstractType
             ->add('name_surname', TextType::class)
             ->add('album_number', TextType::class)
             ->add('function', TextType::class)
-            ->add('semester', TextType::class);
+            ->add('semester', TextType::class)
+            ->add('achievements', AchievementFormType::class);
     }
 
     public function configureOption(OptionsResolver $resolver): void
