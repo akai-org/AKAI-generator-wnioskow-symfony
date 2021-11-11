@@ -17,6 +17,7 @@
     <nav class="navbar">
         <header class="navbar-brand">Generator zaświadczeń o członkostwie</header>
     </nav>
+
     {{ include('form.html.twig') }}
 
     <footer>
@@ -26,32 +27,24 @@
         </div>
 
         <div class="logos" style="margin-left: auto">
-
             <div class="logo" style="padding-right: 45px;">
                 <a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;"
                                                                                                  src="{{ asset('img/ppLogo.png') }}"></a>
 
             </div>
-
             <div class="logo">
                 <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank"
                    style="color:#C0F0C0;"><img style="width: 60px; height: 60px;"
                                                src="{{ asset('img/githubLogo.png') }}"></a>
 
             </div>
-
             <div class="logo">
                 <a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img
                             style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"></a>
-
             </div>
-
-
         </div>
 
     </footer>
-
-
 {% endblock %}
 </body>
 
