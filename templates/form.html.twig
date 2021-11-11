@@ -38,16 +38,18 @@
         }) }}
     </label>
 
-    {# <p>Działania w trakcie podanych semestrów: </p> #}
-    {# <div class="achievement-container"> #}
-    {# <div class="achievement-field"> #}
-    {# <textarea class="wideField form-data" name="achievement[0][name]" #}
-    {# data-name="achievement[0]"></textarea> #}
-    {# <div class="achievement-field-dates"><input type=date name="achievement[0][startDate]"> #}
-    {# <span> - </span> <input type=date name="achievement[0][endDate]"></div> #}
-    {# </div> #}
-    {# </div> #}
-    {# <span class="add-achievement-button">Dodaj osiągnięcie</span> #}
+    <p>Działania w trakcie podanych semestrów: </p>
+    <div class="achievement-container">
+        <div class="achievement-field">
+            {{ form_widget(form.achievements.name, {'attr': {'class': 'wideField form-data'}}) }}
+            <div class="achievement-field-dates">
+                {{ form_widget(form.achievements.startDate) }}
+                <span> - </span>
+                {{ form_widget(form.achievements.endDate) }}
+            </div>
+        </div>
+    </div>
+    <span class="add-achievement-button">Dodaj osiągnięcie</span>
 
     <input type="submit" value="Wygeneruj"/>
     {{ include('loading.html.twig') }}
