@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ApplicationForm;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,10 +22,13 @@ class ApplicationFormType extends AbstractType
             ->add('album_number', TextType::class)
             ->add('function', TextType::class)
             ->add('semester', TextType::class)
-            ->add('achievements', AchievementFormType::class);
+            ->add('achievements', CollectionType::class, [
+                'entry_type' => AchievementFormType::class,
+                'allow_add' => true
+            ]);
     }
 
-    public function configureOption(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => ApplicationForm::class
