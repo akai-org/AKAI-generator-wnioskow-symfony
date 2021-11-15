@@ -1,0 +1,59 @@
+<div class="form-container">
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+    <h3>Dane koła</h3>
+    <label>Przewodniczący: <br/>{{ form_widget(form.leader, {'attr': {'class': 'form-data'}}) }}</label>
+    <label>Nazwa Koła (w dopełniaczu): <br/>{{ form_widget(form.clubname, {
+            'attr': {
+                'class': 'form-data',
+                'placeholder': 'np.: Akademickiego koła aplikacji internetowych'
+            }
+        }) }}
+    </label>
+    <label>Nazwa Wydziału: <br/>{{ form_widget(form.department, {
+            'attr': {
+                'class': 'form-data',
+                'placeholder': 'np.: Wydział Informatyki i Telekomunikacji'
+            }
+        }) }}
+    </label>
+    <label>Opiekun Koła: <br/>{{ form_widget(form.patron, {'attr': {'class': 'form-data'}}) }}</label>
+    <div class="share_link">
+        <a href="#" id="link"
+           title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj
+            link do formularza z uzupełnionymim danymi koła</a>
+    </div>
+
+    <h3>Dane indywidualne</h3>
+    <label>Imię i Nazwisko: <br/>{{ form_widget(form.name_surname, {'attr': {'class': 'form-data'}}) }}</label>
+    <label>Indeks: <br/>{{ form_widget(form.album_number, {'attr': {'class': 'form-data'}}) }}</label>
+    <label>Funkcja: <br/>{{ form_widget(form.function, {'attr': {'class': 'form-data'}}) }}</label>
+
+    <label class="semesters">
+        Semestr członkostwa:
+        {{ form_widget(form.semester, {
+            'attr': {
+                'class': 'form-data',
+                'placeholder': 'np. letni 2020'
+            }
+        }) }}
+    </label>
+
+    <p>Działania w trakcie podanych semestrów: </p>
+    <div class="achievement-container">
+        {% for achievement in form.achievements %}
+            <div class="achievement-field">
+                {{ form_widget(achievement.name, {'attr': {'class': 'wideField form-data'}}) }}
+                <div class="achievement-field-dates">
+                    {{ form_widget(achievement.startDate) }}
+                    <span> - </span>
+                    {{ form_widget(achievement.endDate) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <span class="add-achievement-button">Dodaj osiągnięcie</span>
+
+    <input type="submit" value="Wygeneruj"/>
+    {{ include('loading.html.twig') }}
+    {{ form_end(form) }}
+</div>
