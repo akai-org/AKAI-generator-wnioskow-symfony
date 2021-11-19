@@ -5,10 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Achievement;
 use App\Entity\ApplicationForm;
-use App\Entity\Tag;
-use App\Entity\Task;
 use App\Form\ApplicationFormType;
-use App\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

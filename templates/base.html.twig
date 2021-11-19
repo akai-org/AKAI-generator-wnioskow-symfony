@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}AKAI Generator zaświadczeń{% endblock %}</title>
     <!-- Fonts -->
     {% block stylesheets %}
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     {% endblock %}
 </head>
 
@@ -29,18 +31,20 @@
         <div class="logos" style="margin-left: auto">
             <div class="logo" style="padding-right: 45px;">
                 <a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;"
-                                                                                                 src="{{ asset('img/ppLogo.png') }}"></a>
+                                                                                                 src="{{ asset('img/ppLogo.png') }}"
+                                                                                                 alt="Poznan University of Technology logo"></a>
 
             </div>
             <div class="logo">
                 <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank"
                    style="color:#C0F0C0;"><img style="width: 60px; height: 60px;"
-                                               src="{{ asset('img/githubLogo.png') }}"></a>
+                                               src="{{ asset('img/githubLogo.png') }}" alt="GitHub logo"></a>
 
             </div>
             <div class="logo">
                 <a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img
-                            style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"></a>
+                            style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"
+                            alt="AKAI logo"></a>
             </div>
         </div>
 
