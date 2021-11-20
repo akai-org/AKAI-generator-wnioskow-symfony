@@ -81,12 +81,12 @@
                     {{ form_widget(achievement.name, {'attr': {'class': 'textarea', 'rows': 2}}) }}
                 </div>
             </div>
-            <div class="field is-grouped">
+            <div class="field is-grouped is-grouped-right">
                 <div class="control">
-                    {{ form_widget(achievement.startDate, {'attr': {'class': 'input'}}) }}
+                    {{ form_widget(achievement.startDate, {'attr': {'class': 'input is-size-7-mobile'}}) }}
                 </div>
                 <div class="control">
-                    {{ form_widget(achievement.endDate, {'attr': {'class': 'input'}}) }}
+                    {{ form_widget(achievement.endDate, {'attr': {'class': 'input is-size-7-mobile'}}) }}
                 </div>
             </div>
         {% endfor %}
@@ -96,7 +96,7 @@
     </div>
 
     <div class="field">
-        <div class="control">
+        <div class="control`">
             <button class="button is-fullwidth">
                 Wygeneruj
             </button>
