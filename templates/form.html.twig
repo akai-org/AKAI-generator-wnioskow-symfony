@@ -1,59 +1,107 @@
-<div class="form-container">
-    {{ form_start(form, {'attr': {'class': 'form'}}) }}
-    <h3>Dane koła</h3>
-    <label>Przewodniczący: <br/>{{ form_widget(form.leader, {'attr': {'class': 'form-data'}}) }}</label>
-    <label>Nazwa Koła (w dopełniaczu): <br/>{{ form_widget(form.clubname, {
-            'attr': {
-                'class': 'form-data',
-                'placeholder': 'np.: Akademickiego koła aplikacji internetowych'
-            }
-        }) }}
-    </label>
-    <label>Nazwa Wydziału: <br/>{{ form_widget(form.department, {
-            'attr': {
-                'class': 'form-data',
-                'placeholder': 'np.: Wydział Informatyki i Telekomunikacji'
-            }
-        }) }}
-    </label>
-    <label>Opiekun Koła: <br/>{{ form_widget(form.patron, {'attr': {'class': 'form-data'}}) }}</label>
+<div>
+    {{ form_start(form) }}
+    <h2 class="subtitle has-text-centered">Dane koła</h2>
+    <div class="field">
+        <label class="label">Przewodniczący:</label>
+        <div class="control">
+            {{ form_widget(form.leader, {'attr': {'class': 'input'}}) }}
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Nazwa koła (w dopełniaczu):</label>
+        <div class="control">
+            {{ form_widget(form.clubname, {
+                'attr': {
+                    'class': 'input',
+                    'placeholder': 'np.: Akademickiego koła aplikacji internetowych'
+                }
+            }) }}
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Nazwa wydziału:</label>
+        <div class="control">
+            {{ form_widget(form.department, {
+                'attr': {
+                    'class': 'input',
+                    'placeholder': 'np. Wydział Informatyki i Telekomunikacji'
+                }
+            }) }}
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Opiekun koła:</label>
+        <div class="control">
+            {{ form_widget(form.patron, {'attr': {'class': 'input'}}) }}
+        </div>
+    </div>
     <div class="share_link">
         <a href="#" id="link"
            title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj
             link do formularza z uzupełnionymim danymi koła</a>
     </div>
 
-    <h3>Dane indywidualne</h3>
-    <label>Imię i Nazwisko: <br/>{{ form_widget(form.name_surname, {'attr': {'class': 'form-data'}}) }}</label>
-    <label>Indeks: <br/>{{ form_widget(form.album_number, {'attr': {'class': 'form-data'}}) }}</label>
-    <label>Funkcja: <br/>{{ form_widget(form.function, {'attr': {'class': 'form-data'}}) }}</label>
+    <h2 class="subtitle has-text-centered">Dane indywidualne</h2>
+    <div class="field">
+        <label class="label">Imię i nazwisko:</label>
+        <div class="control">
+            {{ form_widget(form.name_surname, {'attr': {'class': 'input'}}) }}
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Indeks:</label>
+        <div class="control">
+            {{ form_widget(form.album_number, {'attr': {'class': 'input'}}) }}
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Funkcja:</label>
+        <div class="control">
+            {{ form_widget(form.function, {'attr': {'class': 'input'}}) }}
+        </div>
+    </div>
 
-    <label class="semesters">
-        Semestr członkostwa:
-        {{ form_widget(form.semester, {
-            'attr': {
-                'class': 'form-data',
-                'placeholder': 'np. letni 2020'
-            }
-        }) }}
-    </label>
+    <div class="field">
+        <label class="label">Semestr członkostwa:</label>
+        <div class="control">
+            {{ form_widget(form.semester, {
+                'attr': {
+                    'class': 'input',
+                    'placeholder': 'np. letni 2020'
+                }
+            }) }}
+        </div>
+    </div>
 
-    <p>Działania w trakcie podanych semestrów: </p>
-    <div class="achievement-container">
+    <div class="block">
+        <label class="label">Działania w trakcie podanych semestrów: </label>
         {% for achievement in form.achievements %}
-            <div class="achievement-field">
-                {{ form_widget(achievement.name, {'attr': {'class': 'wideField form-data'}}) }}
-                <div class="achievement-field-dates">
-                    {{ form_widget(achievement.startDate) }}
-                    <span> - </span>
-                    {{ form_widget(achievement.endDate) }}
+            <div class="field">
+                <div class="control">
+                    {{ form_widget(achievement.name, {'attr': {'class': 'textarea', 'rows': 2}}) }}
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    {{ form_widget(achievement.startDate, {'attr': {'class': 'input'}}) }}
+                </div>
+                <div class="control">
+                    {{ form_widget(achievement.endDate, {'attr': {'class': 'input'}}) }}
                 </div>
             </div>
         {% endfor %}
+        <div class="has-text-right">
+            <button class="button">Dodaj osiągnięcie</button>
+        </div>
     </div>
-    <span class="add-achievement-button">Dodaj osiągnięcie</span>
 
-    <input type="submit" value="Wygeneruj"/>
-    {{ include('loading.html.twig') }}
+    <div class="field">
+        <div class="control">
+            <button class="button is-fullwidth">
+                Wygeneruj
+            </button>
+        </div>
+    </div>
+    {# {{ include('loading.html.twig') }} #}
     {{ form_end(form) }}
 </div>
