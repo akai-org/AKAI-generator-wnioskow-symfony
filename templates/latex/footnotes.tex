@@ -1,0 +1,33 @@
+\newcommand{\documentFootnotes}{
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+            \przewo \\
+            (imię i nazwisko przewodniczącego) \\[2\baselineskip]
+            ....................................... \\
+            (podpis przewodniczącego)
+        \end{center}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+            \opiekun \\ 
+            (tytuł, imię i nazwisko opiekuna) \\[2\baselineskip]
+            ....................................... \\
+            (podpis opiekuna)
+        \end{center}
+    \end{minipage} \\[2\baselineskip]
+    \bgroup
+    \def\arraystretch{2}
+    \setlength{\tabcolsep}{1em}
+    \begin{center}
+        \begin{tabular}{| c | c |}
+            \hline
+            LICZBA PRZYZNANYCH PKT* & \multirow{2}{*}{
+                .......................................
+            }\\ 
+            \cline{1-1}
+            & (podpis przedstawiciela komisji)\\
+            \hline
+        \end{tabular}
+    \end{center}
+    \egroup
+}
