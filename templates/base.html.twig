@@ -3,22 +3,35 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}AKAI Generator zaświadczeń{% endblock %}</title>
     <!-- Fonts -->
     {% block stylesheets %}
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     {% endblock %}
 </head>
 
 <body>
 {% block body %}
-    <nav class="navbar">
-        <header class="navbar-brand">Generator zaświadczeń o członkostwie</header>
+    <nav class="hero has-background-grey-darker">
+        <div class="hero-body">
+            <div class="container">
+                <header class="title has-text-centered has-text-white">Generator zaświadczeń o członkostwie
+                </header>
+            </div>
+        </div>
     </nav>
 
-    {{ include('form.html.twig') }}
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="box">
+                {{ include('form.html.twig') }}
+            </div>
+        </div>
+    </section>
 
     <footer>
 
@@ -29,18 +42,20 @@
         <div class="logos" style="margin-left: auto">
             <div class="logo" style="padding-right: 45px;">
                 <a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;"
-                                                                                                 src="{{ asset('img/ppLogo.png') }}"></a>
+                                                                                                 src="{{ asset('img/ppLogo.png') }}"
+                                                                                                 alt="Poznan University of Technology logo"></a>
 
             </div>
             <div class="logo">
                 <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank"
                    style="color:#C0F0C0;"><img style="width: 60px; height: 60px;"
-                                               src="{{ asset('img/githubLogo.png') }}"></a>
+                                               src="{{ asset('img/githubLogo.png') }}" alt="GitHub logo"></a>
 
             </div>
             <div class="logo">
                 <a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img
-                            style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"></a>
+                            style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"
+                            alt="AKAI logo"></a>
             </div>
         </div>
 
