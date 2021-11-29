@@ -81,12 +81,16 @@
                     {{ form_widget(achievement.name, {'attr': {'class': 'textarea', 'rows': 2}}) }}
                 </div>
             </div>
-            <div class="field is-grouped is-grouped-right">
-                <div class="control">
-                    {{ form_widget(achievement.startDate, {'attr': {'class': 'input is-size-7-mobile'}}) }}
+            <div class="level">
+                <div class="level-left">
+                    <div class="control">
+                        {{ form_widget(achievement.startDate, {'attr': {'class': 'input'}}) }}
+                    </div>
                 </div>
-                <div class="control">
-                    {{ form_widget(achievement.endDate, {'attr': {'class': 'input is-size-7-mobile'}}) }}
+                <div class="level-right">
+                    <div class="control">
+                        {{ form_widget(achievement.endDate, {'attr': {'class': 'input'}}) }}
+                    </div>
                 </div>
             </div>
         {% endfor %}
