@@ -23,6 +23,8 @@ class DocumentGeneratingService
 
     private const DATE_FORMAT = 'Y-m-d';
 
+    private const FILENAME_TEMPLATE = "zaswiadczenie_%s";
+
     /** @var PdfGenerator */
     private $generator;
 
@@ -40,6 +42,7 @@ class DocumentGeneratingService
 
     public function getFromDocument(Document $document): string
     {
+        $filename = sprintf(self::FILENAME_TEMPLATE, str_replace(" ", "_", $document->student()->name()));
         return $this->generator
             ->setVariable(self::DEPARTMENT_KEY, $document->club()->departmentName())
             ->setVariable(self::DATE_KEY, date(self::DATE_FORMAT))
@@ -58,6 +61,6 @@ class DocumentGeneratingService
                     $achievement->endDate()
                 );
             }, $document->student()->achievements()))
-            ->generate();
+            ->generate($filename);
     }
 }
