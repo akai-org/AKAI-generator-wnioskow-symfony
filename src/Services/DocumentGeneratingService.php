@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Entity\Achievement;
 use App\Entity\Document;
-use App\Tools\PdfGenerator;
+use App\Tools\PdfGenerator\PdfGenerator;
+use App\Tools\PdfGenerator\StyledElementsFactory;
 
 class DocumentGeneratingService
 {
@@ -17,20 +19,28 @@ class DocumentGeneratingService
     private const POSITION_KEY = 'FUNCTION';
     private const LEADER_NAME_KEY = 'LEADER-NAME';
     private const PATRON_NAME_KEY = 'PATRON-NAME';
+    private const ACHIEVEMENT_LIST_KEY = 'ACHIEVEMENTS';
 
     private const DATE_FORMAT = 'Y-m-d';
 
     /** @var PdfGenerator */
     private $generator;
 
-    public function __construct(PdfGenerator $generator)
+    /** @var StyledElementsFactory */
+    private $elementsFactory;
+
+    public function __construct(
+        PdfGenerator          $generator,
+        StyledElementsFactory $elementsFactory
+    )
     {
         $this->generator = $generator;
+        $this->elementsFactory = $elementsFactory;
     }
 
     public function getFromDocument(Document $document): string
     {
-        $pathToGeneratedFile = $this->generator
+        return $this->generator
             ->setVariable(self::DEPARTMENT_KEY, $document->club()->departmentName())
             ->setVariable(self::DATE_KEY, date(self::DATE_FORMAT))
             ->setVariable(self::CLUB_NAME_KEY, $document->club()->name())
@@ -41,6 +51,13 @@ class DocumentGeneratingService
             ->setVariable(self::POSITION_KEY, $document->student()->position())
             ->setVariable(self::LEADER_NAME_KEY, $document->club()->leaderName())
             ->setVariable(self::PATRON_NAME_KEY, $document->club()->patronName())
+            ->setListVariable(self::ACHIEVEMENT_LIST_KEY, array_map(function (Achievement $achievement) {
+                return (string)$this->elementsFactory->achievement(
+                    $achievement->name(),
+                    $achievement->startDate(),
+                    $achievement->endDate()
+                );
+            }, $document->student()->achievements()))
             ->generate();
     }
 }

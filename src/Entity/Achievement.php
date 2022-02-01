@@ -17,8 +17,8 @@ class Achievement
 
     public function __construct(
         string $name,
-        DateTimeImmutable $startDate,
-        DateTimeImmutable $endDate
+        ?DateTimeImmutable $startDate,
+        ?DateTimeImmutable $endDate
     )
     {
         $this->name = $name;
@@ -26,17 +26,17 @@ class Achievement
         $this->endDate = $endDate;
     }
 
-    public function getName(): string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function getStartDate(): DateTimeImmutable
+    public function startDate(): ?DateTimeImmutable
     {
         return $this->startDate;
     }
 
-    public function getEndDate(): DateTimeImmutable
+    public function endDate(): ?DateTimeImmutable
     {
         return $this->endDate;
     }
