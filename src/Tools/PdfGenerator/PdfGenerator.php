@@ -8,5 +8,5 @@ interface PdfGenerator
 
     public function setListVariable(string $key, array $values): self;
 
-    public function generate(): string;
+    public function generate(string $outputName): string;
 }
