@@ -109,6 +109,6 @@ class ApplicationForm
 
     public function addAchievement(Achievement $achievement): void
     {
-        $this->achievements[] = $achievement;
+        array_push($this->achievements, $achievement);
     }
 }
