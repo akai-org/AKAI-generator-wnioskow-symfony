@@ -2,41 +2,42 @@
 
 namespace App\Entity;
 
-use DateTime;
+use DateTimeImmutable;
 
 class Achievement
 {
+    /** @var string */
     private $name;
+
+    /** @var DateTimeImmutable  */
     private $startDate;
+
+    /** @var DateTimeImmutable  */
     private $endDate;
+
+    public function __construct(
+        string $name,
+        DateTimeImmutable $startDate,
+        DateTimeImmutable $endDate
+    )
+    {
+        $this->name = $name;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
+    }
 
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function getStartDate(): ?DateTime
+    public function getStartDate(): DateTimeImmutable
     {
         return $this->startDate;
     }
 
-    public function setStartDate(?DateTime $startDate): void
-    {
-        $this->startDate = $startDate;
-    }
-
-    public function getEndDate(): ?DateTime
+    public function getEndDate(): DateTimeImmutable
     {
         return $this->endDate;
-    }
-
-    public function setEndDate(?DateTime $endDate): void
-    {
-        $this->endDate = $endDate;
     }
 }
