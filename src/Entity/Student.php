@@ -19,11 +19,15 @@ class Student
     /** @var string */
     private $semester;
 
+    /** @var string*/
+    private $academicYear;
+
     public function __construct(
         string $name,
         string $index,
         string $position,
         string $semester,
+        string $academicYear,
         array $achievements
     )
     {
@@ -31,6 +35,7 @@ class Student
         $this->index = $index;
         $this->position = $position;
         $this->semester = $semester;
+        $this->academicYear = $academicYear;
         $this->achievements = $achievements;
     }
 
@@ -57,5 +62,10 @@ class Student
     public function achievements(): array
     {
         return $this->achievements;
+    }
+
+    public function academicYear(): string
+    {
+        return $this->academicYear;
     }
 }

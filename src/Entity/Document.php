@@ -4,24 +4,24 @@ namespace App\Entity;
 
 class Document
 {
-    /** @var Group */
-    private $group;
+    /** @var Club */
+    private $club;
 
     /** @var Student */
     private $student;
 
     public function __construct(
-        Group $group,
+        Club    $club,
         Student $student
     )
     {
-        $this->group = $group;
+        $this->club = $club;
         $this->student = $student;
     }
 
-    public function group(): Group
+    public function club(): Club
     {
-        return $this->group;
+        return $this->club;
     }
 
     public function student(): Student

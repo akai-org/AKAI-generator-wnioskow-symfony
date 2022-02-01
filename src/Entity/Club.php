@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Group
+class Club
 {
     /** @var string */
     private $leaderName;
@@ -18,13 +18,13 @@ class Group
 
     public function __construct(
         string $leaderName,
-        string $groupName,
+        string $clubName,
         string $departmentName,
         string $patronName
     )
     {
         $this->leaderName = $leaderName;
-        $this->groupName = $groupName;
+        $this->groupName = $clubName;
         $this->departmentName = $departmentName;
         $this->patronName = $patronName;
     }
@@ -34,7 +34,7 @@ class Group
         return $this->leaderName;
     }
 
-    public function groupName(): string
+    public function name(): string
     {
         return $this->groupName;
     }
