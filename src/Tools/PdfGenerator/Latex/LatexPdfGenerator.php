@@ -8,10 +8,11 @@ use Webmozart\Assert\Assert;
 
 class LatexPdfGenerator implements PdfGenerator
 {
-    private const TMP_SUFFIX = 'YmdHis';
+    private const TMP_SUFFIX_DATE_FORMAT = 'YmdHis';
     private const LATEX_SRC = '../latex/src';
     private const LATEX_GENERATED = '../latex/generated';
     private const VARIABLE_PREFIX = 'VAR-';
+    private const VAR_FILE_NAME = 'vars.tex';
 
     /** @var array */
     private $variables;
@@ -43,18 +44,19 @@ class LatexPdfGenerator implements PdfGenerator
 
     public function generate(string $outputName): string
     {
-        $tmpPath = $this->filesystem->tempnam(self::LATEX_GENERATED, self::TMP_SUFFIX);
+        $tmpPath = $this->filesystem->tempnam(self::LATEX_GENERATED, date(self::TMP_SUFFIX_DATE_FORMAT));
+        unlink($tmpPath);
         $this->filesystem->mirror(self::LATEX_SRC, $tmpPath);
-        $varsContent = file_get_contents($tmpPath);
+        $varsContent = file_get_contents($tmpPath . DIRECTORY_SEPARATOR . self::VAR_FILE_NAME);
         foreach ($this->variables as $placeholder => $variable) {
             if(is_array($variable)) {
                 $variable = implode("\n", $variable);
             }
             $varsContent = str_replace($placeholder, $variable, $varsContent);
         }
-        file_put_contents($tmpPath, $varsContent);
+        file_put_contents($tmpPath . DIRECTORY_SEPARATOR . self::VAR_FILE_NAME, $varsContent);
         $texSourcePath = $tmpPath . DIRECTORY_SEPARATOR . "source.tex";
-        shell_exec("latexmk -pdf -jobname=$outputName $texSourcePath");
+        shell_exec("latexmk -pdf -jobname=$outputName -cd $texSourcePath");
         return $tmpPath . DIRECTORY_SEPARATOR . "$outputName.pdf";
     }
 }
