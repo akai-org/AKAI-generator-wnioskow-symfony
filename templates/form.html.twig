@@ -75,27 +75,10 @@
 
     <div class="block">
         <label class="label">Działania w trakcie podanych semestrów: </label>
-        {% for achievement in form.achievements %}
-            <div class="field">
-                <div class="control">
-                    {{ form_widget(achievement.name, {'attr': {'class': 'textarea', 'rows': 2}}) }}
-                </div>
-            </div>
-            <div class="level">
-                <div class="level-left">
-                    <div class="control">
-                        {{ form_widget(achievement.startDate, {'attr': {'class': 'input'}}) }}
-                    </div>
-                </div>
-                <div class="level-right">
-                    <div class="control">
-                        {{ form_widget(achievement.endDate, {'attr': {'class': 'input'}}) }}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+        <ul id="achievements-list">
+        </ul>
         <div class="has-text-right">
-            <button class="button">Dodaj osiągnięcie</button>
+            <button id="add-achievement-button" class="button" type="button">Dodaj osiągnięcie</button>
         </div>
     </div>
 
