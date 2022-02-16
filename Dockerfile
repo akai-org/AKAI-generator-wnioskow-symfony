@@ -9,4 +9,7 @@ RUN curl https://getcomposer.org/download/latest-stable/composer.phar -o compose
     mv composer.phar /usr/local/bin/composer
 
 RUN composer install
+RUN apt-get -y install --no-install-recommends texlive texlive-latex-extra \
+    texlive-extra-utils texlive-bibtex-extra latexmk
+
 ENTRYPOINT /app/entrypoint.sh

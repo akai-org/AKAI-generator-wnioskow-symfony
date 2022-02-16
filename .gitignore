@@ -8,4 +8,4 @@
 /vendor/
 .idea
 docker/mysql/storage/*
-
+.phpunit.result.cache
