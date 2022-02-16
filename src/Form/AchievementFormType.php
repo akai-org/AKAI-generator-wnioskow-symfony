@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Achievement;
+use App\Entity\AchievementForm;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -29,7 +30,7 @@ class AchievementFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Achievement::class
+            'data_class' => AchievementForm::class
         ]);
     }
 }
