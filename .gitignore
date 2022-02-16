@@ -6,8 +6,6 @@
 /public/bundles/
 /var/
 /vendor/
-/.idea/.gitignore
-/.idea/AKAI-generator-wnioskow-symfony.iml
-/.idea/modules.xml
-/.idea/php.xml
-/.idea/vcs.xml
+.idea
+docker/mysql/storage/*
+

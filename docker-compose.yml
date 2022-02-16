@@ -2,10 +2,20 @@ version: '3'
 
 services:
   app:
-    image: php:7.3-alpine3.14
+    build: .
     volumes:
       - .:/app
     ports:
       - "8080:8080"
-    command: "php -S 0.0.0.0:8080 -t /app/public"
+    command: ""
 
+  database:
+    hostname: database
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=db_password
+      - MYSQL_DATABASE=wnioski
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_password
+    volumes:
+      - ./docker/mysql/storage:/var/lib/mysql
