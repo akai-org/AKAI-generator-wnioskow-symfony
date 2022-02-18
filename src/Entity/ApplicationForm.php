@@ -6,15 +6,24 @@ namespace App\Entity;
 
 class ApplicationForm
 {
+    /** @var string */
     private $leader;
+    /** @var string */
     private $clubname;
+    /** @var string */
     private $department;
+    /** @var string */
     private $patron;
 
+    /** @var string */
     private $name_surname;
+    /** @var int */
     private $album_number;
+    /** @var string */
     private $function;
+    /** @var string */
     private $semester;
+    /** @var AchievementForm[] */
     private $achievements = [];
 
     public function getLeader(): string
@@ -107,7 +116,7 @@ class ApplicationForm
         $this->achievements = $achievements;
     }
 
-    public function addAchievement(Achievement $achievement): void
+    public function addAchievement(AchievementForm $achievement): void
     {
         array_push($this->achievements, $achievement);
     }
