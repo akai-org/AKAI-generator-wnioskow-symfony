@@ -10,9 +10,6 @@ const newAchievementHtml = `
                     </div>
                     <div class="level">
                         <div class="level-left">
-                            <button class="remove-achievement button" type="button">Usuń</button>
-                        </div>
-                        <div class="level-right">
                             <div class="control level-item">
                                 <input id="application_form_achievements___name___startDate"
                                 type="date"
@@ -29,6 +26,9 @@ const newAchievementHtml = `
                                 required="required"
                                 />
                             </div>
+                        </div>
+                        <div class="level-right">
+                            <button class="remove-achievement button" type="button">Usuń</button>
                         </div>
                     </div>
 `
