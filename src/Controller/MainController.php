@@ -22,7 +22,6 @@ class MainController extends AbstractController
     public function index(): Response
     {
         $applicationForm = new ApplicationForm();
-        $applicationForm->addAchievement(new Achievement());
         $form = $this->createForm(ApplicationFormType::class, $applicationForm);
         return $this->renderForm('base.html.twig', [
             'form' => $form

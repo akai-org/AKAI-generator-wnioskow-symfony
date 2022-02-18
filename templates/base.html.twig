@@ -33,32 +33,35 @@
         </div>
     </section>
 
-    <footer>
-
-        <div class="footerNapis">
-            Wykonane przez AKAI 2020 &copy
+    <footer class="footer has-background-grey-darker is-justify-content-center">
+        <div class="columns is-mobile is-multiline">
+            <div class="column is-one-third-mobile has-text-centered">
+                <a href="https://www.put.poznan.pl/" target="_blank">
+                    <figure class="image is-64x64 is-inline-block">
+                        <img src="{{ asset('img/PP_znak_pełny_RGB.png') }}" alt="Poznan University of Technology logo">
+                    </figure>
+                </a>
+            </div>
+            <div class="column is-one-third-mobile has-text-centered">
+                <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank">
+                    <figure class="image is-64x64 is-inline-block">
+                        <img src="{{ asset('img/githubLogo.png') }}" alt="GitHub logo">
+                    </figure>
+                </a>
+            </div>
+            <div class="column is-one-third-mobile has-text-centered">
+                <a href="https://akai.org.pl/" target="_blank">
+                    <figure class="image is-64x64 is-inline-block">
+                        <img src="{{ asset('img/akaiLogo.png') }}" alt="AKAI logo">
+                    </figure>
+                </a>
+            </div>
+            <div class="column">
+                <div class="has-text-white has-text-centered">
+                    Wykonane przez AKAI 2020 &copy
+                </div>
+            </div>
         </div>
-
-        <div class="logos" style="margin-left: auto">
-            <div class="logo" style="padding-right: 45px;">
-                <a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;"
-                                                                                                 src="{{ asset('img/ppLogo.png') }}"
-                                                                                                 alt="Poznan University of Technology logo"></a>
-
-            </div>
-            <div class="logo">
-                <a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank"
-                   style="color:#C0F0C0;"><img style="width: 60px; height: 60px;"
-                                               src="{{ asset('img/githubLogo.png') }}" alt="GitHub logo"></a>
-
-            </div>
-            <div class="logo">
-                <a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img
-                            style="width: 60px; height: 60px;" src="{{ asset('img/akaiLogo.png') }}"
-                            alt="AKAI logo"></a>
-            </div>
-        </div>
-
     </footer>
 {% endblock %}
 </body>
