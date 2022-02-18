@@ -10,23 +10,24 @@ const newAchievementHtml = `
                     </div>
                     <div class="level">
                         <div class="level-left">
-                            <div class="control">
-                            <input id="application_form_achievements___name___startDate"
-                            type="date"
-                            class="input"
-                            name="application_form[achievements][__name__][startDate]"
-                            required="required"
-                            />
-                            </div>
+                            <button class="remove-achievement button" type="button">Usuń</button>
                         </div>
                         <div class="level-right">
-                            <div class="control">
-                            <input id="application_form_achievements___name___endDate"
-                            type="date"
-                            class="input"
-                            name="application_form[achievements][__name__][endDate]"
-                            required="required"
-                            />
+                            <div class="control level-item">
+                                <input id="application_form_achievements___name___startDate"
+                                type="date"
+                                class="input"
+                                name="application_form[achievements][__name__][startDate]"
+                                required="required"
+                                />
+                            </div>
+                            <div class="control level-item">
+                                <input id="application_form_achievements___name___endDate"
+                                type="date"
+                                class="input"
+                                name="application_form[achievements][__name__][endDate]"
+                                required="required"
+                                />
                             </div>
                         </div>
                     </div>
