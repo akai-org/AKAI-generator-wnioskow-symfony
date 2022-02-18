@@ -1,14 +1,28 @@
 <div>
+
+    {% if errors is iterable %}
+    {% for error in errors %}
+
+        <div class="notification is-warning has-text-centered">
+            {{ error.message }}
+
+        </div>
+
+    {% endfor %}
+    {% endif %}
+    {{ dump(errors) }}
     {{ form_start(form) }}
     <h2 class="subtitle has-text-centered">Dane koła</h2>
     <div class="field">
-        <label class="label">Przewodniczący:</label>
+        <label class="label">Przewodniczący koła naukowego:</label>
         <div class="control">
             {{ form_widget(form.leader, {'attr': {'class': 'input'}}) }}
+
         </div>
+
     </div>
     <div class="field">
-        <label class="label">Nazwa koła (w dopełniaczu):</label>
+        <label class="label">Nazwa koła naukowego (w <a href="https://pl.wikipedia.org/wiki/Dope%C5%82niacz_(przypadek)" target="_blank">dopełniaczu</a> np. <span class="is-italic">Akademickiego Koła Aplikacji Internetowych</span>):</label>
         <div class="control">
             {{ form_widget(form.clubname, {
                 'attr': {
@@ -16,6 +30,7 @@
                     'placeholder': 'np.: Akademickiego koła aplikacji internetowych'
                 }
             }) }}
+
         </div>
     </div>
     <div class="field">
@@ -30,13 +45,13 @@
         </div>
     </div>
     <div class="field">
-        <label class="label">Opiekun koła:</label>
+        <label class="label">Opiekun koła (wraz z tytułem/tytułami):</label>
         <div class="control">
             {{ form_widget(form.patron, {'attr': {'class': 'input'}}) }}
         </div>
     </div>
     <div class="share_link">
-        <a href="#" id="link"
+        <a id="link"
            title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj
             link do formularza z uzupełnionymim danymi koła</a>
     </div>
@@ -74,7 +89,7 @@
     </div>
 
     <div class="block">
-        <label class="label">Działania w trakcie podanych semestrów: </label>
+        <label class="label">Działania w trakcie podanego semestru: </label>
         <ul id="achievements-list">
         </ul>
         <div class="has-text-right">
