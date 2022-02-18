@@ -12,7 +12,7 @@ const newAchievementHtml = `
                    
                     <div class="level">
                         <div class="level-left">
-
+                            Od: 
                             <div class="control level-item">
                                 <input id="application_form_achievements___name___startDate"
                                 type="date"
@@ -21,6 +21,7 @@ const newAchievementHtml = `
                                 required="required"
                                 />
                             </div>
+                            Do:
                             <div class="control level-item">
                                 <input id="application_form_achievements___name___endDate"
                                 type="date"
