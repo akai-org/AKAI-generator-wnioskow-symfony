@@ -21,7 +21,7 @@ class DocumentGeneratingService
     private const PATRON_NAME_KEY = 'PATRON-NAME';
     private const ACHIEVEMENT_LIST_KEY = 'ACHIEVEMENTS';
 
-    private const DATE_FORMAT = 'Y-m-d';
+    private const DATE_FORMAT = 'd.m.Y';
 
     private const FILENAME_TEMPLATE = "zaswiadczenie_%s";
 

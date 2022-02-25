@@ -21,12 +21,12 @@
 
     </div>
     <div class="field">
-        <label class="label">Nazwa koła naukowego (w <a href="https://pl.wikipedia.org/wiki/Dope%C5%82niacz_(przypadek)" target="_blank">dopełniaczu</a> np. <span class="is-italic">Akademickiego Koła Aplikacji Internetowych</span>):</label>
+        <label class="label">Nazwa koła naukowego (np. <span class="is-italic">Akademickie Koło Aplikacji Internetowych</span>):</label>
         <div class="control">
             {{ form_widget(form.clubname, {
                 'attr': {
                     'class': 'input',
-                    'placeholder': 'np.: Akademickiego koła aplikacji internetowych'
+                    'placeholder': 'np.: Akademickie koło aplikacji internetowych'
                 }
             }) }}
 
@@ -52,7 +52,7 @@
     <div class="share_link">
         <a id="link"
            title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj
-            link do formularza z uzupełnionymim danymi koła</a>
+            link do formularza z uzupełnionymi danymi koła</a>
     </div>
 
     <h2 class="subtitle has-text-centered">Dane indywidualne</h2>
@@ -81,7 +81,7 @@
             {{ form_widget(form.semester, {
                 'attr': {
                     'class': 'input',
-                    'placeholder': 'np. letni 2020'
+                    'placeholder': 'letnim/zimowym'
                 }
             }) }}
         </div>

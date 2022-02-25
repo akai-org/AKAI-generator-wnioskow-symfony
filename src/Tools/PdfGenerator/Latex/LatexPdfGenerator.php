@@ -14,11 +14,16 @@ class LatexPdfGenerator implements PdfGenerator
     private const VARIABLE_PREFIX = 'VAR-';
     private const VAR_FILE_NAME = 'vars.tex';
 
+    private $useradmin = 'marcin';
+
     /** @var array */
     private $variables;
 
     /** @var Filesystem */
     private $filesystem;
+
+
+    private $output_name;
 
     public function __construct(
         Filesystem $filesystem
@@ -56,7 +61,14 @@ class LatexPdfGenerator implements PdfGenerator
         }
         file_put_contents($tmpPath . DIRECTORY_SEPARATOR . self::VAR_FILE_NAME, $varsContent);
         $texSourcePath = $tmpPath . DIRECTORY_SEPARATOR . "source.tex";
-        shell_exec("latexmk -pdf -jobname=$outputName -cd $texSourcePath");
+        #print_r("sudo -u marcin latexmk -f -pdf -jobname=$outputName -cd $texSourcePath 2>&1");
+        #shell_exec("sudo -u marcin latexmk -f -pdf -jobname=$outputName -cd $texSourcePath 2>&1");
+        shell_exec("sudo -u $this->useradmin latexmk -f -pdf -jobname=$outputName -cd $texSourcePath 2>&1 &");
+        $this->output_name = $outputName.".pdf";
         return $tmpPath . DIRECTORY_SEPARATOR . "$outputName.pdf";
+    }
+
+    public function getOutputName(){
+        return $this->output_name;
     }
 }
