@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 
+use DateTimeImmutable;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -20,7 +21,7 @@ class ApplicationForm
     private $patron;
     /** @var string */
     private $name_surname;
-    /** @var int */
+    /** @var string */
     private $album_number;
     /** @var string */
     private $function;
@@ -29,12 +30,29 @@ class ApplicationForm
     /** @var AchievementForm[] */
     private $achievements = [];
 
+    /** @var Student */
+    private Student $studentData;
+    /** @var Club */
+    private Club $clubData;
+
+
     private $copyFilled = ['leader', 'clubname', 'department', 'patron'];
 
     public function setFormsData(array $form_data) : void
     {
+
         foreach($form_data as $key => $value){
-            $this->$key = $value;
+            if($key == "achievements") {
+                foreach($value as $ach){
+                    $startDate = new DateTimeImmutable($ach['startDate']);
+                    $endDate = new DateTimeImmutable($ach['endDate']);
+                    $ach2 = new Achievement($ach['name'], $startDate, $endDate);
+                    array_push($this->achievements, $ach2);
+                }
+                continue;
+            }else{
+                $this->$key = $value;
+            }
         }
     }
 
@@ -194,7 +212,7 @@ class ApplicationForm
         $this->name_surname = $name_surname;
     }
 
-    public function getAlbumNumber(): int
+    public function getAlbumNumber(): string
     {
         return $this->album_number;
     }
@@ -237,5 +255,22 @@ class ApplicationForm
     public function addAchievement(AchievementForm $achievement): void
     {
         array_push($this->achievements, $achievement);
+    }
+
+
+    public function separateData()
+    {
+        $club = new Club($this->leader, $this->clubname, strtoupper($this->department), $this->patron);
+        $student = new Student($this->name_surname, $this->album_number, $this->function, $this->semester, "2021/2022", $this->achievements);
+        $this->clubData = $club;
+        $this->studentData = $student;
+    }
+
+    public function getClubObject() : Club{
+        return $this->clubData;
+    }
+
+    public function getStudentObject() : Student{
+        return $this->studentData;
     }
 }

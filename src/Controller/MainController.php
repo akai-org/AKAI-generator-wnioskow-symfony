@@ -4,10 +4,19 @@
 namespace App\Controller;
 
 use App\Entity\ApplicationForm;
+use App\Entity\Club;
+use App\Entity\Document;
 use App\Form\ApplicationFormType;
+use App\Services\DocumentGeneratingService;
+use App\Tools\PdfGenerator\Latex\LatexPdfGenerator;
+use App\Tools\PdfGenerator\Latex\LatexStyledElementsFactory;
+use SebastianBergmann\Invoker\TimeoutException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -16,6 +25,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class MainController extends AbstractController
 {
+
+    public function __construct(DocumentGeneratingService $service){
+        $this->service = $service;
+    }
+
     /**
      * @Route("", methods={"GET"})
      */
@@ -46,7 +60,7 @@ class MainController extends AbstractController
     /**
      * @Route("", methods={"POST"})
      */
-    public function postForm(Request $request, ValidatorInterface $validator): Response
+    public function postForm(Request $request, ValidatorInterface $validator)
     {
         /*$form = $this->createForm(ApplicationFormType::class, new ApplicationForm());
         $form->handleRequest($request);
@@ -73,8 +87,26 @@ class MainController extends AbstractController
             ]);
         }
 
-        return new Response('The author is valid! Yes!');
+        $application->separateData();
 
+
+        $clubObj = $application->getClubObject();
+        $studentObj = $application->getStudentObject();
+        $doc = new Document($clubObj, $studentObj);
+        $document = $this->service->getFromDocument($doc);
+
+        $pdffile = file_get_contents($document);
+        $response = new Response($pdffile);
+
+
+        $disposition = $response->headers->makeDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            str_replace(" ", "_", $application->getNameSurname()). ".pdf"
+        );
+
+        $response->headers->set('Content-Disposition', $disposition);
+        return $response;
+        # return new Response('The author is valid! Yes!');
 
 
 
