@@ -14,7 +14,7 @@ class LatexPdfGenerator implements PdfGenerator
     private const VARIABLE_PREFIX = 'VAR-';
     private const VAR_FILE_NAME = 'vars.tex';
 
-    private $user = 'marcin';
+    private string $user = 'marcin';
 
 
     /** @var array */

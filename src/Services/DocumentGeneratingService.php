@@ -42,7 +42,8 @@ class DocumentGeneratingService
 
     public function getFromDocument(Document $document): string
     {
-        $filename = sprintf(self::FILENAME_TEMPLATE, str_replace(" ", "_", $document->student()->name()));
+        #$filename = sprintf(self::FILENAME_TEMPLATE, str_replace(" ", "_", $document->student()->name()));
+        $filename = sprintf(self::FILENAME_TEMPLATE, "temp");
         return $this->generator
             ->setVariable(self::DEPARTMENT_KEY, $document->club()->departmentName())
             ->setVariable(self::DATE_KEY, date(self::DATE_FORMAT))
@@ -56,11 +57,13 @@ class DocumentGeneratingService
             ->setVariable(self::PATRON_NAME_KEY, $document->club()->patronName())
             ->setListVariable(self::ACHIEVEMENT_LIST_KEY, array_map(function (Achievement $achievement) {
                 return (string)$this->elementsFactory->achievement(
-                    $achievement->name(),
+
+                    preg_replace('/[\@\;\'\$\&\%\^\*\#]+/', '', $achievement->name()),
                     $achievement->startDate(),
                     $achievement->endDate()
                 );
             }, $document->student()->achievements()))
             ->generate($filename);
     }
+
 }

@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Achievement;
+use App\Entity\AchievementForm;
 use App\Entity\ApplicationForm;
 use App\Entity\Club;
 use App\Entity\Document;
@@ -10,6 +12,7 @@ use App\Form\ApplicationFormType;
 use App\Services\DocumentGeneratingService;
 use App\Tools\PdfGenerator\Latex\LatexPdfGenerator;
 use App\Tools\PdfGenerator\Latex\LatexStyledElementsFactory;
+use DateTime;
 use SebastianBergmann\Invoker\TimeoutException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
@@ -76,12 +79,25 @@ class MainController extends AbstractController
         //set all form data
         $application->setFormsData($form_data);
         //validate
-        #print_r($form_data);
         $errors = $validator->validate($application);
         if (count($errors) > 0) {
 
             $errorsString = (string) $errors;
+            #var_dump();
+            $ach = $application->getAchievements();
+            $acharra = array();
+            foreach($ach as $achiv) {
+                $ach_form = new AchievementForm();
+                $ach_form->setName($achiv->name());
+                $ach_form->setStartDate(DateTime::createFromImmutable($achiv->startDate()));
+                $ach_form->setEndDate(DateTime::createFromImmutable($achiv->endDate()));
+                array_push($acharra, $ach_form);
+            }
+            $application->setAchievements($acharra);
+
             $form = $this->createForm(ApplicationFormType::class, $application);
+            #print_r($application);
+
             return $this->renderForm('base.html.twig', [
                 'errors' => $errors,
                 'form' => $form
