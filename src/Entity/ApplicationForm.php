@@ -49,9 +49,10 @@ class ApplicationForm
                 foreach($value as $ach){
                     $startDate = new DateTimeImmutable($ach['startDate']);
                     $endDate = new DateTimeImmutable($ach['endDate']);
-                    $ach2 = new Achievement($ach['name'], $startDate, $endDate);
+                    $ach2 = new Achievement(preg_replace('/[\@\;\'\$\&\%\^\*\#]+/', '', $ach['name']), $startDate, $endDate);
                     array_push($this->achievements, $ach2);
                 }
+
                 continue;
             }else{
                 $this->$key = preg_replace('/[\@\;\'\$\&\%\^\*\#]+/', '', $value);
