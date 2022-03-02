@@ -76,7 +76,7 @@ class MainController extends AbstractController
         //set all form data
         $application->setFormsData($form_data);
         //validate
-        print_r($form_data);
+        #print_r($form_data);
         $errors = $validator->validate($application);
         if (count($errors) > 0) {
 
