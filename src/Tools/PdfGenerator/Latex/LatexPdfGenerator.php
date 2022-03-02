@@ -14,6 +14,9 @@ class LatexPdfGenerator implements PdfGenerator
     private const VARIABLE_PREFIX = 'VAR-';
     private const VAR_FILE_NAME = 'vars.tex';
 
+    private $user = 'marcin';
+
+
     /** @var array */
     private $variables;
 
@@ -63,7 +66,7 @@ class LatexPdfGenerator implements PdfGenerator
 
         #compile latex
         $texSourcePath = $tmpPath . DIRECTORY_SEPARATOR . "source.tex";
-        shell_exec("latexmk -pdf -jobname=$outputName -cd $texSourcePath");
+        shell_exec("sudo -u $this->user latexmk -pdf -jobname=$outputName -cd $texSourcePath");
 
         #wait for compile to end
         $path = $tmpPath . DIRECTORY_SEPARATOR . "$outputName.pdf";
