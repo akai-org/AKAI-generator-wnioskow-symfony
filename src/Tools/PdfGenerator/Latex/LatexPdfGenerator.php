@@ -14,16 +14,11 @@ class LatexPdfGenerator implements PdfGenerator
     private const VARIABLE_PREFIX = 'VAR-';
     private const VAR_FILE_NAME = 'vars.tex';
 
-    private $useradmin = 'marcin';
-
     /** @var array */
     private $variables;
 
     /** @var Filesystem */
     private $filesystem;
-
-
-    private $output_name;
 
     public function __construct(
         Filesystem $filesystem
@@ -49,9 +44,14 @@ class LatexPdfGenerator implements PdfGenerator
 
     public function generate(string $outputName): string
     {
+        #create directory
         $tmpPath = $this->filesystem->tempnam(self::LATEX_GENERATED, date(self::TMP_SUFFIX_DATE_FORMAT));
         unlink($tmpPath);
+
+        #copy source to it
         $this->filesystem->mirror(self::LATEX_SRC, $tmpPath);
+
+        #change variables
         $varsContent = file_get_contents($tmpPath . DIRECTORY_SEPARATOR . self::VAR_FILE_NAME);
         foreach ($this->variables as $placeholder => $variable) {
             if(is_array($variable)) {
@@ -60,15 +60,20 @@ class LatexPdfGenerator implements PdfGenerator
             $varsContent = str_replace($placeholder, $variable, $varsContent);
         }
         file_put_contents($tmpPath . DIRECTORY_SEPARATOR . self::VAR_FILE_NAME, $varsContent);
-        $texSourcePath = $tmpPath . DIRECTORY_SEPARATOR . "source.tex";
-        #print_r("sudo -u marcin latexmk -f -pdf -jobname=$outputName -cd $texSourcePath 2>&1");
-        #shell_exec("sudo -u marcin latexmk -f -pdf -jobname=$outputName -cd $texSourcePath 2>&1");
-        shell_exec("sudo -u $this->useradmin latexmk -f -pdf -jobname=$outputName -cd $texSourcePath 2>&1 &");
-        $this->output_name = $outputName.".pdf";
-        return $tmpPath . DIRECTORY_SEPARATOR . "$outputName.pdf";
-    }
 
-    public function getOutputName(){
-        return $this->output_name;
+        #compile latex
+        $texSourcePath = $tmpPath . DIRECTORY_SEPARATOR . "source.tex";
+        shell_exec("latexmk -pdf -jobname=$outputName -cd $texSourcePath");
+
+        #wait for compile to end
+        $path = $tmpPath . DIRECTORY_SEPARATOR . "$outputName.pdf";
+        do {
+            $response = file_get_contents($path);
+            usleep(100);
+        } while ($response === false);
+
+        #remve directory
+        $this->filesystem->remove($tmpPath);
+        return $response;
     }
 }

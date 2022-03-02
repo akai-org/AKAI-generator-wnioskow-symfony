@@ -94,10 +94,9 @@ class MainController extends AbstractController
         $clubObj = $application->getClubObject();
         $studentObj = $application->getStudentObject();
         $doc = new Document($clubObj, $studentObj);
-        $document = $this->service->getFromDocument($doc);
+        $generatedFile = $this->service->getFromDocument($doc);
 
-        $pdffile = file_get_contents($document);
-        $response = new Response($pdffile);
+        $response = new Response($generatedFile);
 
 
         $disposition = $response->headers->makeDisposition(
