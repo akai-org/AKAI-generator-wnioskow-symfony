@@ -77,9 +77,12 @@ if (addAchievementButton) {
 }
 
 
-
+window.onload = function() {
+    addAchievement()
+};
 
 window.addEventListener('load', () => {
+
     document.querySelector('#link').addEventListener('click', () => {
         const query = {
             leader: document.querySelector('#application_form_leader').value,

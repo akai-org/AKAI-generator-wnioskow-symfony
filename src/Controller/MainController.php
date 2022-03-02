@@ -76,6 +76,7 @@ class MainController extends AbstractController
         //set all form data
         $application->setFormsData($form_data);
         //validate
+        print_r($form_data);
         $errors = $validator->validate($application);
         if (count($errors) > 0) {
 
@@ -101,17 +102,12 @@ class MainController extends AbstractController
 
         $disposition = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            str_replace(" ", "_", $application->getNameSurname()). ".pdf"
+            "zaswidaczenie.pdf"
         );
 
         $response->headers->set('Content-Disposition', $disposition);
         return $response;
         # return new Response('The author is valid! Yes!');
-
-
-
-
-
 
     }
 }
