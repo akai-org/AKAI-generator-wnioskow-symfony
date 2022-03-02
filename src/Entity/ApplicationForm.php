@@ -27,6 +27,9 @@ class ApplicationForm
     private $function;
     /** @var string */
     private $semester;
+    /** @var string */
+    private $year;
+
     /** @var AchievementForm[] */
     private $achievements = [];
 
@@ -98,7 +101,16 @@ class ApplicationForm
 
         ]);
 
-
+        $metadata->addPropertyConstraints('year', [new NotBlank([
+            'message' => 'Pole {{ label }} nie może być puste!'
+        ]),
+            new Length([
+                'min' => 5,
+                'max' => 10,
+                'minMessage' => 'Musisz podać rok stypendium powyżej {{ limit }} znaków',
+                'maxMessage' => 'Rok stypendium musi być mniejszy niż {{ limit }} znaków',
+            ]),
+        ]);
 
         $metadata->addPropertyConstraints('patron', [new NotBlank([
             'message' => 'Pole {{ label }} nie może być puste!'
@@ -156,6 +168,14 @@ class ApplicationForm
                 'minMessage' => 'Semestr członkowstwa musi być dłuższy niż {{ limit }} znaków',
                 'maxMessage' => 'Semestr członkowstwa musi być krótszy niż niż {{ limit }} znaków',
             ]),
+
+        ]);
+
+        $metadata->addPropertyConstraints('achievements', [
+           new NotBlank([
+               'message' => 'Musisz podać chociaż jedno osiągnięcie!'
+           ]),
+
 
         ]);
 
@@ -242,6 +262,16 @@ class ApplicationForm
         $this->semester = $semester;
     }
 
+    public function getYear():string
+    {
+        return $this->year;
+    }
+
+    public function setYear(string $year):void
+    {
+        $this->year = $year;
+    }
+
     public function getAchievements(): array
     {
         return $this->achievements;
@@ -261,7 +291,7 @@ class ApplicationForm
     public function separateData()
     {
         $club = new Club($this->leader, $this->clubname, strtoupper($this->department), $this->patron);
-        $student = new Student($this->name_surname, $this->album_number, $this->function, $this->semester, "2021/2022", $this->achievements);
+        $student = new Student($this->name_surname, $this->album_number, $this->function, $this->semester, $this->year, $this->achievements);
         $this->clubData = $club;
         $this->studentData = $student;
     }

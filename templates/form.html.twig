@@ -22,10 +22,10 @@
     </div>
     <div class="field">
         <label class="label">Nazwa koła naukowego (np. <span class="is-italic">Akademickie Koło Aplikacji Internetowych</span>):</label>
-        <div class="control">
+        <div class="select">
             {{ form_widget(form.clubname, {
                 'attr': {
-                    'class': 'input',
+                    'class': 'select',
                     'placeholder': 'np.: Akademickie koło aplikacji internetowych'
                 }
             }) }}
@@ -34,11 +34,11 @@
     </div>
     <div class="field">
         <label class="label">Nazwa wydziału:</label>
-        <div class="control">
+        <div class="select">
             {{ form_widget(form.department, {
                 'attr': {
-                    'class': 'input',
-                    'placeholder': 'np. Wydział Informatyki i Telekomunikacji'
+                    'class': 'select',
+                    'placeholder': 'np.: Informatyki i Telekomunikacji'
                 }
             }) }}
         </div>
@@ -75,15 +75,30 @@
         </div>
     </div>
 
-    <div class="field">
-        <label class="label">Semestr członkostwa:</label>
-        <div class="control">
-            {{ form_widget(form.semester, {
-                'attr': {
-                    'class': 'input',
-                    'placeholder': 'letnim/zimowym'
-                }
-            }) }}
+    <div class="field is-grouped is-grouped-left">
+        <div class="field">
+            <label class="label">Rok:</label>
+            <div class="select">
+                {{ form_widget(form.year, {
+                    'attr': {
+                        'class': 'select',
+                        'placeholder': 'Wybierz rok członkowstwa'
+                    }
+                }) }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label"> Semestr:</label>
+            <div class="select">
+                {{
+                form_widget(form.semester, {
+                    'attr': {
+                        'class': 'select',
+                        'placeholder': 'Wybierz semestr członkowstwa'
+                    }
+                })
+                }}
+            </div>
         </div>
     </div>
 
