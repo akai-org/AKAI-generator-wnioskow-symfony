@@ -54,7 +54,7 @@ class ApplicationForm
                 }
                 continue;
             }else{
-                $this->$key = $value;
+                $this->$key = preg_replace('/[\@\;\'\$\&\%\^\*\#]+/', '', $value);
             }
         }
     }
