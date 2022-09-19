@@ -9,7 +9,11 @@ use App\Entity\Student;
 use App\Services\DocumentGeneratingService;
 use App\Tools\PdfGenerator\PdfGenerator;
 use App\Tools\PdfGenerator\StyledElementsFactory;
+use PHPUnit\Framework\MockObject\Stub\ReturnSelf;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\Promise\ReturnPromise;
+use Prophecy\Prophecy\MethodProphecy;
 
 class DocumentGeneratingServiceTest extends TestCase
 {
@@ -62,13 +66,16 @@ class DocumentGeneratingServiceTest extends TestCase
      */
     public function it_calls_to_generator()
     {
-        $generator = $this->getMockBuilder(PdfGenerator::class);
+        $expectedResult = "ok";
+        $generator = $this->createMock(PdfGenerator::class);
+        $generator->method("setVariable")->willReturnSelf();
+        $generator->method("setListVariable")->willReturnSelf();
+        $generator->method("generate")->willReturn($expectedResult);
         $factory = $this->createMock(StyledElementsFactory::class);
-
-
         $this->service = new DocumentGeneratingService($generator, $factory);
-        $this->service->getFromDocument($this->document);
 
+        $result = $this->service->getFromDocument($this->document);
 
+        $this->assertEquals($expectedResult, $result);
     }
 }

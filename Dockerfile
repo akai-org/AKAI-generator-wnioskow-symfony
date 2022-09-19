@@ -6,4 +6,3 @@ RUN apt-get update && apt-get -y install --no-install-recommends texlive texlive
     texlive-extra-utils texlive-bibtex-extra latexmk
 RUN apt update && apt-get install -y git libzip-dev zip \
   && docker-php-ext-install zip pdo pdo_mysql
-RUN composer config --no-plugins allow-plugins.symfony/flex true && composer install
