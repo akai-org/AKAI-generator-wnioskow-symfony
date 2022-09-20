@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: AKAI Statement Generator API
+  description: |-
+    Simple API for statement generating.
+    
+    Some useful links:
+    - [Report issues here](https://github.com/akai-org/AKAI-generator-wnioskow-symfony/issues)
+    
+  contact:
+    Discord: Gumkle#5935
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://api.wnioski.akai.org.pl/api/v1
+tags:
+  - name: lists
+    description: Lists of selectable values
+  - name: generate
+    description: Generation of statement
+paths:
+  /lists/clubs:
+    get:
+      tags:
+        - lists
+      summary: Get list of all club names
+      description: Fetch array of strings, containing list of all club names, sorted alphabetically (cs).
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Clubs'
+  /lists/departments:
+    get:
+      tags:
+        - lists
+      summary: Get list of all departments names
+      description: Fetch array of strings, containing list of all departments names, sorted alphabetically (cs).
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Departments'          
+  /generate:
+    post:
+      tags:
+        - generate
+      summary: Generate statement document
+      description: Generate document, based on input data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Form'
+        
+      responses:
+        '200':
+          description: File data
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+                example: "attachment; filename=Dawid_Dziedzic.pdf"
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+components:
+  schemas:
+    Form:
+      required:
+        - club_leader_full_name
+        - club_name
+        - club_department
+        - club_patron_full_name
+        - student_full_name
+        - student_function
+        - student_album_number
+        - semester
+        - student_achievements
+      type: object
+      properties:
+        club_leader_full_name:
+          type: string
+          example: Marcin Sylka
+        club_name:
+          type: string
+          example: Akademickie Koło Aplikacji Internetowych
+        club_department:
+          type: string
+          example: Informatyki
+        club_patron_full_name:
+          type: string
+          example: dr inż. Mikołaj Morzy
+        student_full_name:
+          type: string
+          example: Dawid Dziedzic
+        student_function:
+          type: string
+          example: Członek
+        semester:
+          type: string
+          example: letni
+        student_album_number:
+          type: int
+          example: 136110
+        student_achievements: 
+          type: array
+          items:
+            $ref: '#/components/schemas/Achievement'
+    Achievement:
+      required:
+        - description
+        - start_date
+        - end_date
+      type: object
+      properties:
+        description:
+          type: string
+          example: "był dobrym chłopakiem dzień dobry zawsze mówił"
+        start_date:
+          type: date
+          format: YYYY-MM-DD
+          example: "2022-10-08"
+        end_date:
+          type: date
+          format: YYYY-MM-DD
+          example: "2022-10-08"
+
+    Departments:
+      type: array
+      items:
+        type: string
+
+    Clubs:
+      type: array
+      items:
+        type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            invalid_field_name:
+              type: string
+              example: error_cause

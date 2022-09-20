@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api/v1/")
+ * @Route("/api/v1/lists/")
  */
 class ListsController extends AbstractController
 {

@@ -3,21 +3,13 @@
 namespace App\Controller\Api\V1;
 
 use App\Api\Form\Dto\StatementForm;
-use App\Entity\Achievement;
-use App\Entity\Club;
-use App\Entity\Document;
-use App\Entity\Student;
 use App\Response\JsonErrorResponse;
 use App\Services\DocumentGeneratingService;
-use DateTimeImmutable;
-use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
