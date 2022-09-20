@@ -19,21 +19,8 @@ class GenerateController extends AbstractController
      */
     public function generateStatement(Request $request): Response
     {
-        $form = $this->createForm(StatementFormType::class, null, [
-            "csrf_protection" => false,
-        ]);
-        $form->submit(json_decode($request->getContent(), true));
 
-        if (!$form->isSubmitted() || !$form->isValid()) {
-            $errorMessages = [];
-            foreach ($form->getErrors(true) as $error) {
-                $errorMessages[] = $error->getMessage();
-            }
-            return new JsonErrorResponse($errorMessages, 400);
-        }
-
-
-
+        return new JsonErrorResponse([], 400);
         return $this->json(["message" => "form ok"]);
     }
 }
