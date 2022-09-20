@@ -4,16 +4,10 @@
 namespace App\Controller;
 
 use App\Entity\ApplicationForm;
-use App\Entity\Club;
 use App\Entity\Document;
 use App\Form\ApplicationFormType;
 use App\Services\DocumentGeneratingService;
-use App\Tools\PdfGenerator\Latex\LatexPdfGenerator;
-use App\Tools\PdfGenerator\Latex\LatexStyledElementsFactory;
-use SebastianBergmann\Invoker\TimeoutException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -96,7 +90,6 @@ class MainController extends AbstractController
         $generatedFile = $this->service->getFromDocument($doc);
 
         $response = new Response($generatedFile);
-
 
         $disposition = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
