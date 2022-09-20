@@ -3,173 +3,49 @@
 namespace App\Api\Form\Dto;
 
 
-use App\Entity\Document;
-use App\Entity\Student;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class StatementForm
 {
-    private string $clubLeaderFullName;
-    private string $clubName;
-    private string $clubDepartment;
-    private string $clubPatronFullName;
-    private string $studentFullName;
-    private string $studentAlbumNumber;
-    private string $studentFunction;
-    private string $semester;
-    private array $studentAchievements;
+    #[SerializedName('club_leader_full_name')]
+    #[Assert\NotBlank(null, "club_leader_full_name cannot be left blank")]
+    public ?string $leaderName;
 
-    /**
-     * @return string
-     */
-    public function getClubLeaderFullName(): string
-    {
-        return $this->clubLeaderFullName;
-    }
+    #[SerializedName('club_name')]
+    #[Assert\NotBlank(null, "club_name cannot be left blank")]
+    public ?string $clubName;
 
-    /**
-     * @param string $clubLeaderFullName
-     */
-    public function setClubLeaderFullName(string $clubLeaderFullName): void
-    {
-        $this->clubLeaderFullName = $clubLeaderFullName;
-    }
+    #[SerializedName('club_department')]
+    #[Assert\NotBlank(null, "club_department cannot be left blank")]
+    public ?string $department;
 
-    /**
-     * @return string
-     */
-    public function getClubName(): string
-    {
-        return $this->clubName;
-    }
+    #[SerializedName('club_patron_full_name')]
+    #[Assert\NotBlank(null, "club_patron_full_name cannot be left blank")]
+    public ?string $patronName;
 
-    /**
-     * @param string $clubName
-     */
-    public function setClubName(string $clubName): void
-    {
-        $this->clubName = $clubName;
-    }
+    #[SerializedName('student_full_name')]
+    #[Assert\NotBlank(null, "student_full_name cannot be left blank")]
+    public ?string $studentName;
 
-    /**
-     * @return string
-     */
-    public function getClubDepartment(): string
-    {
-        return $this->clubDepartment;
-    }
+    #[SerializedName('student_album_number')]
+    #[Assert\NotBlank(null, "student_album_number cannot be left blank")]
+    public ?string $index;
 
-    /**
-     * @param string $clubDepartment
-     */
-    public function setClubDepartment(string $clubDepartment): void
-    {
-        $this->clubDepartment = $clubDepartment;
-    }
+    #[SerializedName('student_function')]
+    #[Assert\NotBlank(null, "student_function cannot be left blank")]
+    public ?string $position;
 
-    /**
-     * @return string
-     */
-    public function getClubPatronFullName(): string
-    {
-        return $this->clubPatronFullName;
-    }
+    #[SerializedName('semester')]
+    #[Assert\NotBlank(null, "semester cannot be left blank")]
+    public ?string $semester;
 
-    /**
-     * @param string $clubPatronFullName
-     */
-    public function setClubPatronFullName(string $clubPatronFullName): void
-    {
-        $this->clubPatronFullName = $clubPatronFullName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStudentFullName(): string
-    {
-        return $this->studentFullName;
-    }
-
-    /**
-     * @param string $studentFullName
-     */
-    public function setStudentFullName(string $studentFullName): void
-    {
-        $this->studentFullName = $studentFullName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStudentAlbumNumber(): string
-    {
-        return $this->studentAlbumNumber;
-    }
-
-    /**
-     * @param string $studentAlbumNumber
-     */
-    public function setStudentAlbumNumber(string $studentAlbumNumber): void
-    {
-        $this->studentAlbumNumber = $studentAlbumNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStudentFunction(): string
-    {
-        return $this->studentFunction;
-    }
-
-    /**
-     * @param string $studentFunction
-     */
-    public function setStudentFunction(string $studentFunction): void
-    {
-        $this->studentFunction = $studentFunction;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSemester(): string
-    {
-        return $this->semester;
-    }
-
-    /**
-     * @param string $semester
-     */
-    public function setSemester(string $semester): void
-    {
-        $this->semester = $semester;
-    }
-
-    /**
-     * @return array
-     */
-    public function getStudentAchievements(): array
-    {
-        return $this->studentAchievements;
-    }
-
-    /**
-     * @param AchievementForm[] $studentAchievements
-     */
-    public function setStudentAchievements(array $studentAchievements): void
-    {
-        $this->studentAchievements = $studentAchievements;
-    }
-
-    public function getDocument(): Document
-    {
-        $student = new Student(
-            $this->studentFullName,
-            $this->studentAlbumNumber,
-            $this->studentFunction,
-            $this->semester,
-            $this->yea
-        );
-    }
+    #[SerializedName('student_achievements')]
+    #[Assert\NotBlank(null, "student_achievements cannot be left blank")]
+    #[Assert\All([
+        new Assert\NotBlank,
+        new Assert\Length(min: 5),
+    ])]
+    /** @var AchievementForm[] */
+    public ?array $achievements;
 }

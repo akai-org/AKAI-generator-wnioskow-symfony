@@ -2,61 +2,21 @@
 
 namespace App\Api\Form\Dto;
 
-use DateTime;
+use DateTimeImmutable;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AchievementForm
 {
-    private string $description;
-    private DateTime $startDate;
-    private DateTime $endDate;
+    #[SerializedName('description')]
+    #[Assert\NotBlank(null, "club_leader_full_name cannot be left blank")]
+    public ?string $description;
 
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
+    #[SerializedName('start_date')]
+    #[Assert\NotBlank(null, "club_leader_full_name cannot be left blank")]
+    public ?DateTimeImmutable $startDate;
 
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getStartDate(): DateTime
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @param DateTime $startDate
-     */
-    public function setStartDate(DateTime $startDate): void
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getEndDate(): DateTime
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param DateTime $endDate
-     */
-    public function setEndDate(DateTime $endDate): void
-    {
-        $this->endDate = $endDate;
-    }
-
-
+    #[SerializedName('end_date')]
+    #[Assert\NotBlank(null, "club_leader_full_name cannot be left blank")]
+    public ?DateTimeImmutable $endDate;
 }
