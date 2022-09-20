@@ -37,8 +37,9 @@ class GenerateController extends AbstractController
     {
         try {
             $statementForm = $this->serializer->deserialize($request->getContent(), StatementForm::class, 'json');
-        } catch (NotEncodableValueException $e) {
-            return new JsonErrorResponse(["json" => "can't decode your message"], 400);
+        } catch (\Exception $e) {
+
+            return new JsonErrorResponse(["json" => $e->getMessage()], 400);
         }
 
         $errors = $this->validator->validate($statementForm);

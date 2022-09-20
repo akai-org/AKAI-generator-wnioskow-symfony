@@ -42,10 +42,7 @@ class StatementForm
 
     #[SerializedName('student_achievements')]
     #[Assert\NotBlank(null, "student_achievements cannot be left blank")]
-    #[Assert\All([
-        new Assert\NotBlank,
-        new Assert\Length(min: 5),
-    ])]
+    #[Assert\Valid]
     /** @var AchievementForm[] */
     public ?array $achievements;
 }
