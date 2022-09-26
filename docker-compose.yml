@@ -1,13 +1,18 @@
 version: '3'
 
 services:
+  web:
+    image: nginx:1.23
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/app
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./docker/nginx/logs:/var/log/nginx
   app:
     build: .
     volumes:
       - .:/app
-    ports:
-      - "8080:8080"
-    command: ""
 
   database:
     hostname: database
