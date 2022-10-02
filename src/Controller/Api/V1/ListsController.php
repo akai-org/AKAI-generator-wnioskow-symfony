@@ -53,7 +53,7 @@ class ListsController extends AbstractController
             'Międzywydziałowe Koło Naukowe "PETARDA"',
             'MKN PUT Motosport',
             'Akademicki Klub Lotniczy Politechniki Poznańskiej',
-            'Akacemickie Koło Naukowe Stowarzyszenia Elektryków Polskich nr 7',
+            'Akademickie Koło Naukowe Stowarzyszenia Elektryków Polskich nr 7',
             'Koło Naukowe "Electronus"',
             'Koło Naukowe "PUT RocketLab"',
             'Koło Naukowe Inżynierii Środowiska',
